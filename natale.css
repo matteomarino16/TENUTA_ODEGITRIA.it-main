@@ -1,0 +1,403 @@
+/* =========================================================
+   Tema natalizio – Tenuta Odegitria
+   Si attiva da solo dal 1 novembre al 7 gennaio (classe html.natale,
+   impostata nello <head> di ogni pagina). Fuori stagione non ha effetto.
+   Per provarlo: aggiungi ?natale=1 all'indirizzo (oppure ?natale=0).
+   ========================================================= */
+:root {
+    --natale-red: #8e2424;
+    --natale-red-dark: #6f1b1b;
+    --natale-gold: #c9a24a;
+    --natale-green: #1f3a2d;
+    --natale-cream: #fbf6ec;
+}
+
+.natale-banner,
+.natale-section,
+.natale-greeting,
+.natale-snow {
+    display: none;
+}
+
+/* ---------- Banner in alto ---------- */
+html.natale .natale-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    height: 42px;
+    padding: 0 16px;
+    background: var(--natale-red);
+    background-image:
+        radial-gradient(circle at 10% 50%, rgba(255,255,255,0.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 60% 30%, rgba(255,255,255,0.10) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 85% 70%, rgba(255,255,255,0.12) 0 2px, transparent 3px);
+    background-size: 120px 42px;
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1001;
+    white-space: nowrap;
+    overflow: hidden;
+}
+html.natale .natale-banner-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+html.natale .natale-banner i { color: var(--natale-gold); margin-right: 6px; }
+html.natale .natale-banner a {
+    flex-shrink: 0;
+    color: var(--natale-red);
+    background: var(--natale-gold);
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+html.natale .natale-banner a:hover { background: #fff; }
+html.natale header { top: 42px; }
+
+/* ---------- Colori festivi su pulsanti e titoletti ---------- */
+html.natale .btn-scopri,
+html.natale .btn-solid,
+html.natale .btn-leggi,
+html.natale .btn-nav-booking {
+    background-color: var(--natale-red) !important;
+    color: #fff !important;
+    border-color: var(--natale-red) !important;
+}
+html.natale .btn-scopri:hover,
+html.natale .btn-solid:hover,
+html.natale .btn-leggi:hover,
+html.natale .btn-nav-booking:hover {
+    background-color: var(--natale-red-dark) !important;
+}
+html.natale .tenuta-subtitle { color: var(--natale-red); }
+html.natale h1.hero-top-text::before,
+html.natale h1.hero-top-text::after {
+    content: "✦";
+    color: var(--natale-gold);
+    margin: 0 10px;
+}
+
+/* ---------- Neve sull'immagine principale ---------- */
+html.natale #hero { position: relative; }
+html.natale .natale-snow {
+    display: block;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+.natale-snow span {
+    position: absolute;
+    top: -12px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.85;
+    animation: natale-fall linear infinite;
+}
+@keyframes natale-fall {
+    0%   { transform: translate3d(0, -10px, 0); }
+    50%  { transform: translate3d(18px, 50vh, 0); }
+    100% { transform: translate3d(-12px, 105vh, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    html.natale .natale-snow { display: none; }
+}
+
+/* ---------- Sezione "Natale e Capodanno" in home ---------- */
+html.natale .natale-section {
+    display: block;
+    background-color: var(--natale-green);
+    background-image:
+        radial-gradient(circle at 12% 20%, rgba(201,162,74,0.35) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.25) 0 1px, transparent 2px),
+        radial-gradient(circle at 40% 85%, rgba(201,162,74,0.25) 0 1.5px, transparent 2.5px);
+    background-size: 160px 160px;
+    color: #fff;
+}
+html.natale .natale-section .tenuta-subtitle { color: var(--natale-gold); }
+html.natale .natale-section .tenuta-title { color: #fff; }
+html.natale .natale-section .tenuta-bold { color: rgba(255,255,255,0.9); }
+.natale-points {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 40px;
+}
+.natale-point {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(201,162,74,0.45);
+    padding: 30px 26px;
+    text-align: center;
+}
+.natale-point i { font-size: 1.8rem; color: var(--natale-gold); margin-bottom: 14px; }
+.natale-point h3 { font-size: 1.3rem; margin-bottom: 10px; color: #fff; }
+.natale-point p { color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+.natale-cta { justify-content: center; margin-top: 40px; }
+html.natale .natale-section .btn-outline-dark {
+    color: #fff;
+    border-color: var(--natale-gold);
+}
+html.natale .natale-section .btn-outline-dark:hover {
+    background: var(--natale-gold);
+    color: var(--natale-green);
+}
+
+/* ---------- Footer: filo di luci e auguri ---------- */
+html.natale footer {
+    position: relative;
+    padding-top: 74px;
+}
+html.natale footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 18px;
+    background:
+        radial-gradient(circle at 12px 10px, #e8c25a 0 4px, transparent 5px) 0 0 / 72px 18px repeat-x,
+        radial-gradient(circle at 36px 10px, var(--natale-red) 0 4px, transparent 5px) 0 0 / 72px 18px repeat-x,
+        radial-gradient(circle at 60px 10px, #2e6b4a 0 4px, transparent 5px) 0 0 / 72px 18px repeat-x;
+    border-top: 2px solid rgba(0,0,0,0.25);
+}
+html.natale .natale-greeting {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--natale-red);
+    margin: 18px 0 6px;
+}
+html.natale .natale-greeting i { color: var(--natale-gold); font-size: 0.8rem; margin: 0 6px; }
+
+@media (max-width: 768px) {
+    html.natale .natale-banner { font-size: 0.72rem; gap: 10px; justify-content: space-between; }
+    html.natale .natale-banner a { padding: 4px 10px; font-size: 0.65rem; }
+    .natale-points { grid-template-columns: 1fr; gap: 18px; }
+    html.natale h1.hero-top-text::before,
+    html.natale h1.hero-top-text::after { margin: 0 6px; }
+}
+
+/* =========================================================
+   Tema esteso a tutte le pagine
+   ========================================================= */
+
+/* Hero: velo caldo festivo + filo di luci sul bordo inferiore */
+html.natale .slide::after {
+    background:
+        linear-gradient(to top, rgba(31,58,45,0.75) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0) 100%),
+        radial-gradient(ellipse at top, rgba(142,36,36,0.25), transparent 60%);
+}
+html.natale .gallery-hero {
+    position: relative;
+    overflow: hidden;
+    background-image:
+        linear-gradient(rgba(31,58,45,0.55), rgba(110,27,27,0.45)),
+        url('foto-home/hero.jpg');
+}
+.natale-lights {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 22px;
+    z-index: 3;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 12px 11px, #f2cf6b 0 4px, rgba(242,207,107,0.35) 5px, transparent 8px) 0 0 / 72px 22px repeat-x,
+        radial-gradient(circle at 36px 11px, #d6403d 0 4px, rgba(214,64,61,0.35) 5px, transparent 8px) 0 0 / 72px 22px repeat-x,
+        radial-gradient(circle at 60px 11px, #4fa36d 0 4px, rgba(79,163,109,0.35) 5px, transparent 8px) 0 0 / 72px 22px repeat-x;
+    animation: natale-twinkle 2.4s ease-in-out infinite alternate;
+}
+@keyframes natale-twinkle {
+    from { opacity: 0.65; }
+    to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .natale-lights { animation: none; }
+}
+
+/* Palline appese nell'angolo dell'immagine principale */
+.natale-baubles {
+    position: absolute;
+    top: 0;
+    right: 6%;
+    z-index: 3;
+    display: flex;
+    gap: 26px;
+    pointer-events: none;
+}
+.natale-baubles span {
+    position: relative;
+    width: 2px;
+    background: rgba(255,255,255,0.55);
+    transform-origin: top center;
+    animation: natale-swing 4s ease-in-out infinite alternate;
+}
+.natale-baubles span::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -26px;
+    width: 28px;
+    height: 28px;
+    margin-left: -14px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.75) 0 3px, transparent 7px), var(--bauble, var(--natale-red));
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+}
+.natale-baubles span::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 8px;
+    height: 5px;
+    margin-left: -4px;
+    background: var(--natale-gold);
+    border-radius: 2px;
+}
+.natale-baubles span:nth-child(1) { height: 120px; --bauble: var(--natale-red); animation-delay: -1s; }
+.natale-baubles span:nth-child(2) { height: 70px;  --bauble: var(--natale-gold); animation-delay: -2.5s; }
+.natale-baubles span:nth-child(3) { height: 150px; --bauble: #2e6b4a; animation-delay: -0.4s; }
+.natale-baubles span:nth-child(4) { height: 95px;  --bauble: var(--natale-red); animation-delay: -3s; }
+@keyframes natale-swing {
+    from { transform: rotate(-3deg); }
+    to   { transform: rotate(3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .natale-baubles span { animation: none; }
+}
+@media (max-width: 768px) {
+    .natale-baubles { right: 4%; gap: 18px; }
+    .natale-baubles span:nth-child(4) { display: none; }
+    .natale-baubles span::after { width: 20px; height: 20px; margin-left: -10px; bottom: -18px; }
+    .natale-baubles span:nth-child(1) { height: 95px; }
+    .natale-baubles span:nth-child(3) { height: 120px; }
+}
+
+/* Ornamento dorato sotto i titoli delle sezioni */
+html.natale .tenuta-title::after,
+html.natale .section-header h2::after,
+html.natale .features-title::after,
+html.natale .gallery-heading::after,
+html.natale [class*="matrimoni-sezione"][class$="-title"]::after,
+html.natale .matrimoni-sezione1-heading::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 16px;
+    margin-top: 14px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='16' viewBox='0 0 120 16'%3E%3Cpath d='M0 8h48M72 8h48' stroke='%23c9a24a' stroke-width='1.5'/%3E%3Cpath d='M60 1l2.2 4.8L67 8l-4.8 2.2L60 15l-2.2-4.8L53 8l4.8-2.2z' fill='%23c9a24a'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+html.natale .section-header h2::after,
+html.natale .section-header .tenuta-title::after,
+html.natale .features-header .features-title::after,
+html.natale .natale-section .tenuta-title::after,
+html.natale .gallery-hero h1::after,
+html.natale .legal-page h1::after {
+    margin-left: auto;
+    margin-right: auto;
+}
+html.natale .section-header .underline { display: none; }
+html.natale .tenuta-title,
+html.natale .section-header h2 { color: var(--natale-red); }
+html.natale .natale-section .tenuta-title { color: #fff; }
+
+/* Sfondi chiari con fiocchi di neve leggeri */
+html.natale .bg-light,
+html.natale .booking-section {
+    background-color: var(--natale-cream);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg stroke='%23c9a24a' stroke-opacity='.22' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M30 20v20M20 30h20M23 23l14 14M37 23L23 37'/%3E%3Cpath d='M100 90v14M93 97h14M95 92l10 10M105 92l-10 10'/%3E%3C/g%3E%3Ccircle cx='112' cy='28' r='1.8' fill='%23c9a24a' fill-opacity='.3'/%3E%3Ccircle cx='42' cy='112' r='1.5' fill='%23c9a24a' fill-opacity='.3'/%3E%3Ccircle cx='70' cy='62' r='1.2' fill='%238e2424' fill-opacity='.18'/%3E%3C/svg%3E");
+    background-size: 140px 140px;
+}
+
+/* Foto e schede con cornice dorata */
+html.natale .apartment-image img,
+html.natale .image-content img {
+    box-shadow: 0 0 0 5px #fff, 0 0 0 7px var(--natale-gold), 0 14px 30px rgba(0,0,0,0.12);
+}
+html.natale .room-card,
+html.natale .contact-box,
+html.natale .room-facts > div {
+    border-color: rgba(201,162,74,0.45);
+}
+html.natale .room-card:hover { box-shadow: 0 10px 25px rgba(142,36,36,0.18); }
+html.natale .apartment-capacity i,
+html.natale .apartment-services-list i,
+html.natale .contact-box i { color: var(--natale-red); }
+html.natale .apartment-type,
+html.natale .room-facts dt,
+html.natale .breadcrumb a { color: var(--natale-red); }
+html.natale .feature-icon {
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--natale-gold);
+}
+html.natale .service-label {
+    background: var(--natale-red);
+    color: #fff;
+}
+
+/* FAQ e tabella */
+html.natale .faq-item summary::after { color: var(--natale-red); }
+html.natale .faq-item { border-bottom-color: rgba(201,162,74,0.4); }
+html.natale .compare-table thead th {
+    background: var(--natale-green);
+    color: var(--natale-gold);
+}
+html.natale .compare-table tbody tr:nth-child(even) { background: rgba(201,162,74,0.07); }
+
+/* Moduli */
+html.natale .contact-right,
+html.natale .matrimoni-contact-form {
+    border-top: 4px solid var(--natale-red);
+}
+
+/* Sezione natalizia compatta sulle pagine interne */
+html.natale .natale-section.natale-compact { padding: 70px 0; text-align: center; }
+html.natale .natale-compact .section-header-top { margin-bottom: 0; }
+html.natale .natale-compact .tenuta-bold { max-width: 720px; margin: 0 auto; }
+html.natale .natale-compact .natale-cta { margin-top: 30px; }
+
+/* Il banner non deve spingere il testo dell'immagine principale fuori schermo */
+html.natale #hero { height: calc(100vh - 42px); height: calc(100svh - 42px); }
+
+/* Rifinitura mobile del tema */
+@media (max-width: 768px) {
+    html.natale .natale-banner { height: 44px; }
+    html.natale header { top: 44px; }
+    html.natale #hero { height: calc(100vh - 44px); height: calc(100svh - 44px); }
+    html.natale .natale-banner-text { font-size: 0.75rem; }
+    html.natale .natale-banner a { min-height: 32px; display: inline-flex; align-items: center; font-size: 0.7rem; }
+    .natale-points { gap: 14px; margin-top: 28px; }
+    .natale-point {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        column-gap: 14px;
+        text-align: left;
+        padding: 18px 16px;
+    }
+    .natale-point i { grid-row: span 2; font-size: 1.5rem; margin: 4px 0 0; text-align: center; }
+    .natale-point h3 { font-size: 1.1rem; margin-bottom: 4px; }
+    .natale-point p { font-size: 0.92rem; }
+    html.natale .natale-section.natale-compact { padding: 56px 0; }
+    html.natale .natale-greeting { font-size: 1rem; padding: 0 12px; }
+    html.natale .apartment-image img,
+    html.natale .image-content img { box-shadow: 0 0 0 4px #fff, 0 0 0 5px var(--natale-gold), 0 10px 22px rgba(0,0,0,0.1); }
+}
+@media (max-width: 768px) {
+    html.natale .natale-banner a { font-size: 0.75rem; padding: 4px 12px; }
+}
+html.natale .lang-link.active { color: var(--natale-gold); }
+@media (max-width: 768px) {
+    html.natale .nav-links .btn-nav-booking { background: var(--natale-red) !important; color: #fff !important; }
+}
+html.natale .distance-list strong { color: var(--natale-red); }
+html.natale .distance-list li { border-bottom-color: rgba(201,162,74,0.4); }
